@@ -1,0 +1,32 @@
+{
+    "name": "rafaelwendel/ci4tablemaker",
+    "description": "A helper library for the CodeIgniter 4 framework designed to extend the capabilities of the native (View) Table class.",
+    "keywords": [
+        "codeigniter4",
+        "php",
+        "table",
+        "maker"
+    ],
+    "version": "0.0.1",
+    "type": "library",
+    "homepage": "https://github.com/rafaelwendel/CI4TableMaker",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rafael Wendel Pinheiro",
+            "email": "rafaelwendel@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "codeigniter4/framework": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CI4TableMaker\\": "src/"
+        }
+    }
+}
