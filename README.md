@@ -1,6 +1,6 @@
-# TableMaker
+# CI4TableMaker
 
-**TableMaker** is a helper library for the **CodeIgniter 4** framework designed to extend the capabilities of the native `CodeIgniter\View\Table` class.
+**CI4TableMaker** is a helper library for the **CodeIgniter 4** framework designed to extend the capabilities of the native `CodeIgniter\View\Table` class.
 
 It simplifies the task of dynamically injecting action columns (such as "Edit", "Delete", or custom buttons) into HTML tables. It features support for **conditional action links per row** (e.g., showing a button only if the user is an Admin) and **dynamic placeholder substitution** for database columns in URLs.
 
@@ -44,12 +44,12 @@ class Users extends BaseController
         // 2. Instantiate TableMaker passing CodeIgniter 4's Table library
         $tableMaker = new TableMaker(new \CodeIgniter\View\Table());
 
-        // 3. Set table template and headers
+        // 3. Set table template and headers. The same as \CodeIgniter4\View\Table::setTemplate() method.
         $template = [
             'table_open' => '<table class="table table-bordered table-striped">'
         ];
         $tableMaker->setTemplate($template);
-        $tableMaker->setHeading('ID', 'Name', 'Profile', 'Actions');
+        $tableMaker->setHeading(['ID', 'Name', 'Profile', 'Actions']);
 
         // 4. Set the data and the URL base for your action links
         $tableMaker->setData($users);
@@ -75,6 +75,14 @@ In your View (`app/Views/users/index.php`), simply print the object:
 </div>
 ```
 
+The code produces the following result:
+| ID | Name           | Profile | Actions |
+| -- | ---------------| --------|---------|
+| 1  | Roger Federer  | Admin   | [Edit](#) [Delete](#) |
+| 2  | Rafael Nadal   | Author  | [Edit](#) [Delete](#) |
+| 3  | Novak Djokovic | Editor  | [Edit](#) [Delete](#) |
+| 4  | Andy Murray    | Admin   | [Edit](#) [Delete](#) |
+
 ---
 
 ### 2. Conditional Action Links
@@ -98,6 +106,13 @@ $tableMaker->addLink(
     $condition
 );
 ```
+Result:
+| ID | Name           | Profile | Actions |
+| -- | ---------------| --------|---------|
+| 1  | Roger Federer  | Admin   | [Edit](#) [Delete](#) [Advanced Settings](#) |
+| 2  | Rafael Nadal   | Author  | [Edit](#) [Delete](#) |
+| 3  | Novak Djokovic | Editor  | [Edit](#) [Delete](#) |
+| 4  | Andy Murray    | Admin   | [Edit](#) [Delete](#) [Advanced Settings](#) |
 
 ---
 
